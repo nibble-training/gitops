@@ -1,0 +1,8 @@
+#!/bin/bash
+FILE=${1:-$0}
+while IFS= read -r LINE; do
+	# Eerst de SHA berekenen
+	SHA=$(echo "${LINE}" | shasum | cut -c 1-8)
+	# Daarna de regel afdrukken
+	echo "${SHA} ${LINE}"
+done <"$FILE"
